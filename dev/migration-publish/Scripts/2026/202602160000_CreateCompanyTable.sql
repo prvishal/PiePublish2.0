@@ -25,7 +25,7 @@ BEGIN
         [DeletedAt] DATETIME2(7) NULL,
         [DeletedBy] INT NULL,
         CONSTRAINT [PK_Company] PRIMARY KEY ([CompanyId]),
-        CONSTRAINT [FK_Company_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE CASCADE,
+        CONSTRAINT [FK_Company_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE NO ACTION,
         CONSTRAINT [FK_Company_DeletedBy] FOREIGN KEY ([DeletedBy]) REFERENCES [dbo].[User] ([UserId])
     );
 END

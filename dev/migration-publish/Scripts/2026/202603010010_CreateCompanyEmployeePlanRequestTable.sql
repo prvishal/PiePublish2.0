@@ -1,4 +1,6 @@
--- Create CompanyEmployeePlanRequest table.
+-- Create dbo.CompanyEmployeePlanRequest only (no other objects in this file).
+-- Prerequisites: dbo.EmployeePlan, dbo.Company, dbo.Client, dbo.User must already exist.
+-- FKs use ON DELETE NO ACTION on Client/Company parents so mistaken deletes do not cascade-remove rows.
 -- Direct assignment by Pie or client request with approval. One active per company (enforced in code).
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'CompanyEmployeePlanRequest')
 BEGIN
@@ -28,8 +30,8 @@ BEGIN
         [DeletedBy] INT NULL,
         CONSTRAINT [PK_CompanyEmployeePlanRequest] PRIMARY KEY ([CompanyEmployeePlanRequestId]),
         CONSTRAINT [FK_CompanyEmployeePlanRequest_EmployeePlan] FOREIGN KEY ([EmployeePlanId]) REFERENCES [dbo].[EmployeePlan] ([EmployeePlanId]),
-        CONSTRAINT [FK_CompanyEmployeePlanRequest_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId]) ON DELETE CASCADE,
-        CONSTRAINT [FK_CompanyEmployeePlanRequest_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE CASCADE,
+        CONSTRAINT [FK_CompanyEmployeePlanRequest_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId]) ON DELETE NO ACTION,
+        CONSTRAINT [FK_CompanyEmployeePlanRequest_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE NO ACTION,
         CONSTRAINT [FK_CompanyEmployeePlanRequest_RequestedBy] FOREIGN KEY ([RequestedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [FK_CompanyEmployeePlanRequest_ApprovedBy] FOREIGN KEY ([ApprovedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [FK_CompanyEmployeePlanRequest_CreatedBy] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[User] ([UserId]),

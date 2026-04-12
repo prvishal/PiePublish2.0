@@ -12,7 +12,7 @@ BEGIN
         [UpdatedBy] INT NULL,
         CONSTRAINT [PK_UserCompany] PRIMARY KEY ([UserCompanyId]),
         CONSTRAINT [FK_UserCompany_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE,
-        CONSTRAINT [FK_UserCompany_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId]) ON DELETE CASCADE,
+        CONSTRAINT [FK_UserCompany_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId]) ON DELETE NO ACTION,
         CONSTRAINT [FK_UserCompany_CreatedBy] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [FK_UserCompany_UpdatedBy] FOREIGN KEY ([UpdatedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [UQ_UserCompany_UserId_CompanyId] UNIQUE ([UserId], [CompanyId])

@@ -17,7 +17,7 @@ BEGIN
         [DeletedBy] INT NULL,
         CONSTRAINT [PK_PieManagerClient] PRIMARY KEY ([PieManagerClientId]),
         CONSTRAINT [FK_PieManagerClient_User] FOREIGN KEY ([UserId]) REFERENCES [dbo].[User] ([UserId]) ON DELETE CASCADE,
-        CONSTRAINT [FK_PieManagerClient_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE CASCADE,
+        CONSTRAINT [FK_PieManagerClient_Client] FOREIGN KEY ([ClientId]) REFERENCES [dbo].[Client] ([ClientId]) ON DELETE NO ACTION,
         CONSTRAINT [FK_PieManagerClient_CreatedBy] FOREIGN KEY ([CreatedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [FK_PieManagerClient_UpdatedBy] FOREIGN KEY ([UpdatedBy]) REFERENCES [dbo].[User] ([UserId]),
         CONSTRAINT [FK_PieManagerClient_DeletedBy] FOREIGN KEY ([DeletedBy]) REFERENCES [dbo].[User] ([UserId])
