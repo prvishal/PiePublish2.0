@@ -1,0 +1,116 @@
+-- Seed cities for India (Iso2 = IN). Runs once per country.
+-- Source: docs/country city arabic english.xlsx (Sheet City).
+IF EXISTS (SELECT 1 FROM sys.tables WHERE name = 'City')
+   AND EXISTS (SELECT 1 FROM sys.tables WHERE name = 'Country')
+   AND NOT EXISTS (
+       SELECT 1
+       FROM [dbo].[City] c
+       INNER JOIN [dbo].[Country] co ON co.[CountryId] = c.[CountryId]
+       WHERE co.[Iso2] = 'IN' AND c.[DeletedAt] IS NULL
+   )
+BEGIN
+    INSERT INTO [dbo].[City] (
+        [CountryId], [Name], [NameAr], [SortOrder],
+        [CreatedAt], [CreatedBy], [UpdatedAt], [UpdatedBy], [DeletedAt], [DeletedBy]
+    )
+    SELECT co.[CountryId], v.[Name], v.[NameAr], v.[SortOrder],
+           GETDATE(), NULL, NULL, NULL, NULL, NULL
+    FROM [dbo].[Country] co
+    CROSS APPLY (VALUES
+        (N'Mumbai',                 N'مومباي',               1),
+        (N'Delhi',                  N'دلهي',                 2),
+        (N'New Delhi',              N'نيودلهي',              3),
+        (N'Bengaluru',              N'بنغالور',              4),
+        (N'Hyderabad',              N'حيدر أباد',            5),
+        (N'Ahmedabad',              N'أحمد آباد',            6),
+        (N'Chennai',                N'تشيناي',               7),
+        (N'Kolkata',                N'كولكاتا',              8),
+        (N'Pune',                   N'بوني',                 9),
+        (N'Surat',                  N'سورات',                10),
+        (N'Jaipur',                 N'جايبور',               11),
+        (N'Lucknow',                N'لكناو',                12),
+        (N'Kanpur',                 N'كانبور',               13),
+        (N'Nagpur',                 N'ناغبور',               14),
+        (N'Indore',                 N'إندور',                15),
+        (N'Bhopal',                 N'بوبال',                16),
+        (N'Visakhapatnam',          N'فيساخاباتنام',         17),
+        (N'Patna',                  N'باتنا',                18),
+        (N'Vadodara',               N'فادودارا',             19),
+        (N'Ghaziabad',              N'غازي آباد',            20),
+        (N'Ludhiana',               N'لودهيانا',             21),
+        (N'Agra',                   N'أغرا',                 22),
+        (N'Nashik',                 N'ناشيك',                23),
+        (N'Faridabad',              N'فريد آباد',            24),
+        (N'Meerut',                 N'ميروت',                25),
+        (N'Rajkot',                 N'راجكوت',               26),
+        (N'Varanasi',               N'فاراناسي',             27),
+        (N'Prayagraj',              N'براياغراج',            28),
+        (N'Howrah',                 N'هواره',                29),
+        (N'Kochi',                  N'كوتشي',                30),
+        (N'Coimbatore',             N'كويمباتور',            31),
+        (N'Guwahati',               N'غواهاتي',              32),
+        (N'Amritsar',               N'أمريتسار',             33),
+        (N'Noida',                  N'نويدا',                34),
+        (N'Gurugram',               N'غوروغرام',             35),
+        (N'Jodhpur',                N'جودهبور',              36),
+        (N'Madurai',                N'مادوراي',              37),
+        (N'Raipur',                 N'رايبور',               38),
+        (N'Kota',                   N'كوتا',                 39),
+        (N'Chandigarh',             N'تشانديغار',            40),
+        (N'Solapur',                N'سولابور',              41),
+        (N'Hubballi',               N'هوبلي',                42),
+        (N'Mysuru',                 N'ميسور',                43),
+        (N'Tiruchirappalli',        N'تيروتشيرابالي',        44),
+        (N'Bareilly',               N'باريلي',               45),
+        (N'Aligarh',                N'أليغار',               46),
+        (N'Moradabad',              N'موراد آباد',           47),
+        (N'Jalandhar',              N'جالاندهار',            48),
+        (N'Thiruvananthapuram',     N'ثيروفانانثابورام',     49),
+        (N'Salem',                  N'سالم',                 50),
+        (N'Warangal',               N'وارانغال',             51),
+        (N'Guntur',                 N'غونتور',               52),
+        (N'Bhiwandi',               N'بهيواندي',             53),
+        (N'Bikaner',                N'بيكانير',              54),
+        (N'Amravati',               N'أمرافاتي',             55),
+        (N'Jamshedpur',             N'جامشيدبور',            56),
+        (N'Bhilai',                 N'بيلاي',                57),
+        (N'Cuttack',                N'كوتاك',                58),
+        (N'Kozhikode',              N'كوزيكود',              59),
+        (N'Udaipur',                N'أودايبور',             60),
+        (N'Mangaluru',              N'مانغالور',             61),
+        (N'Belagavi',               N'بيلاغافي',             62),
+        (N'Kolhapur',               N'كولهابور',             63),
+        (N'Ajmer',                  N'أجمير',                64),
+        (N'Jamnagar',               N'جامناغار',             65),
+        (N'Ujjain',                 N'أوجاين',               66),
+        (N'Siliguri',               N'سيليغوري',             67),
+        (N'Jhansi',                 N'جهانسي',               68),
+        (N'Jammu',                  N'جامو',                 69),
+        (N'Srinagar',               N'سريناغار',             70),
+        (N'Dehradun',               N'دهرادون',              71),
+        (N'Ranchi',                 N'رانشي',                72),
+        (N'Bhubaneswar',            N'بوبانيسوار',           73),
+        (N'Imphal',                 N'إمفال',                74),
+        (N'Shillong',               N'شيلونغ',               75),
+        (N'Aizawl',                 N'أيزول',                76),
+        (N'Kohima',                 N'كوهيما',               77),
+        (N'Agartala',               N'أغارتالا',             78),
+        (N'Gangtok',                N'غانغتوك',              79),
+        (N'Itanagar',               N'إيتاناغار',            80),
+        (N'Panaji',                 N'باناجي',               81),
+        (N'Gandhinagar',            N'غانديناغار',           82),
+        (N'Shimla',                 N'شيملا',                83),
+        (N'Dispur',                 N'ديسبور',               84),
+        (N'Amaravati',              N'أمارافاتي',            85),
+        (N'Vijayawada',             N'فيجاياوادا',           86),
+        (N'Puducherry',             N'بودوتشيري',            87),
+        (N'Port Blair',             N'بورت بلير',            88),
+        (N'Daman',                  N'دامان',                89),
+        (N'Silvassa',               N'سيلفاسا',              90),
+        (N'Kavaratti',              N'كافاراتي',             91),
+        (N'Leh',                    N'ليه',                  92),
+        (N'Thane',                  N'ثان',                  93)
+    ) AS v([Name], [NameAr], [SortOrder])
+    WHERE co.[Iso2] = 'IN' AND co.[DeletedAt] IS NULL;
+END
+GO
