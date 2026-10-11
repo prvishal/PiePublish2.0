@@ -4,7 +4,7 @@ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'User') AND EXISTS (SELECT * FR
 BEGIN
     DECLARE @PieAdminRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'PieAdmin');
     DECLARE @PieManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'PieManager');
-    DECLARE @DefaultPassword NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @DefaultPassword NVARCHAR(500) = N'Pie@321';
 
     IF @PieAdminRoleId IS NOT NULL AND NOT EXISTS (SELECT 1 FROM [dbo].[User] WHERE UserName = N'PieAdmin' OR Email = N'PieAdmin@telepie.local')
     BEGIN

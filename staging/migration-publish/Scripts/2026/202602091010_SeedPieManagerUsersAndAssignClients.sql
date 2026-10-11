@@ -8,7 +8,7 @@ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'User')
 BEGIN
     DECLARE @PieManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'PieManager');
     DECLARE @PieAdminRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'PieAdmin');
-    DECLARE @DefaultPassword NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @DefaultPassword NVARCHAR(500) = N'Pie@321';
     DECLARE @PieAdminUserId INT = (SELECT UserId FROM [dbo].[User] WHERE UserName = N'PieAdmin' AND RoleId = @PieAdminRoleId);
 
     -- Create additional PieManager users for demonstration

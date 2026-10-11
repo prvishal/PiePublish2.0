@@ -4,10 +4,10 @@
 -- Seeds:
 --   Clients:  E2E Client Alpha, E2E Client Beta
 --   Companies: E2E Company Alpha (under Alpha), E2E Company Beta (under Beta)
---   Portal users (password ChangeMe123!):
+--   Portal users (password Pie@321):
 --     E2EClientAdmin, E2EClientManager  → Alpha
 --     E2ECompanyAdmin, E2ECompanyManager → Alpha company
---   Employees (login = NationalId / ChangeMe123!):
+--   Employees (login = NationalId / Pie@321):
 --     E2EEMP0001, E2EEMP0002, E2EEMP0003 on Alpha
 --     E2EEMPB001 on Beta
 --   PieManager1 also assigned to E2E Client Alpha (if free)
@@ -127,7 +127,7 @@ BEGIN
     DECLARE @ClientManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'ClientManager');
     DECLARE @CompanyAdminRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'CompanyAdmin');
     DECLARE @CompanyManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'CompanyManager');
-    DECLARE @Pwd NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @Pwd NVARCHAR(500) = N'Pie@321';
 
     IF @ClientAdminRoleId IS NOT NULL
        AND NOT EXISTS (SELECT 1 FROM [dbo].[User] WHERE UserName = N'E2EClientAdmin' OR Email = N'E2EClientAdmin@telepie.local')
@@ -240,7 +240,7 @@ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'User')
    AND EXISTS (SELECT * FROM sys.tables WHERE name = 'Employee')
 BEGIN
     DECLARE @EmployeeRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'Employee');
-    DECLARE @PwdEmp NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @PwdEmp NVARCHAR(500) = N'Pie@321';
     DECLARE @AlphaCoId INT = (
         SELECT TOP (1) CompanyId FROM [dbo].[Company]
         WHERE CompanyName = N'E2E Company Alpha' AND DeletedAt IS NULL ORDER BY CompanyId

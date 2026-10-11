@@ -4,7 +4,7 @@ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'User') AND EXISTS (SELECT * FR
 BEGIN
     DECLARE @CompanyAdminRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'CompanyAdmin');
     DECLARE @CompanyManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'CompanyManager');
-    DECLARE @DefaultPassword NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @DefaultPassword NVARCHAR(500) = N'Pie@321';
 
     -- Company 1 - Admin (check UserName and Email for uniqueness)
     IF @CompanyAdminRoleId IS NOT NULL AND NOT EXISTS (SELECT 1 FROM [dbo].[User] WHERE UserName = N'Company1Admin' OR Email = N'Company1Admin@telepie.local')

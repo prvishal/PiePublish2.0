@@ -3,7 +3,7 @@ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'User') AND EXISTS (SELECT * FR
 BEGIN
     DECLARE @ClientAdminRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'ClientAdmin');
     DECLARE @ClientManagerRoleId INT = (SELECT RoleId FROM [dbo].[Role] WHERE Name = N'ClientManager');
-    DECLARE @DefaultPassword NVARCHAR(500) = N'ChangeMe123!';
+    DECLARE @DefaultPassword NVARCHAR(500) = N'Pie@321';
 
     -- Client 1 - Admin
     IF @ClientAdminRoleId IS NOT NULL AND NOT EXISTS (SELECT 1 FROM [dbo].[User] WHERE UserName = N'Client1Admin')
